@@ -1,0 +1,5 @@
+{
+  "tender_search_input": "input[name='txtIhaleNo']",
+  "search_button": "input#btnSorgula",
+  "download_zip_button": "a.btnIndir"
+}

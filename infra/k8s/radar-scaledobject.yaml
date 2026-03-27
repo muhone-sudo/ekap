@@ -1,0 +1,20 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: radar-scaledobject
+  namespace: ekap
+spec:
+  scaleTargetRef:
+    name: radar
+  pollingInterval: 30
+  cooldownPeriod: 300
+  minReplicaCount: 0
+  maxReplicaCount: 20
+  triggers:
+    - type: aws-sqs-queue
+      authenticationRef:
+        name: keda-aws-credentials
+      metadata:
+        queueURL: ${SQS_QUEUE_URL}
+        queueLength: "5"
+        awsRegion: eu-central-1
